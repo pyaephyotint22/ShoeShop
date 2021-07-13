@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   <link rel="icon" href="assets/images/favicon.ico"></link>
+   <link 
+   href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display;swap"
+    rel="stylesheet">
+	</link> 
+	<title>Shoe Store Online Shop</title>
+	
+    <!-- Bootstrap core CSS -->
+    <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+    <h:outputStylesheet library="webjars" name="font-awesome/5.15.0/css/all.min-jsf.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="owl.css"></h:outputStylesheet>
+    <style>
+    	#bImg{
+    	background-image: url(resources/assets/images/pz4.jpg);
+   		 }
+  		 #banner1{
+   			padding: 300px 0px;
+			background-image: url(resources/assets/images/zz1.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+ 		  }
+ 		  #banner2{
+ 		  	padding: 300px 0px;
+			background-image: url(resources/assets/images/zz2.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+ 		  
+ 		  }
+ 		  #banner3{
+ 		  		padding: 300px 0px;
+				background-image: url(resources/assets/images/zz3.jpg); 
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+ 		  
+ 		  }
+    	.animation{
+			
+		 	position: relative; 
+			  animation: mymove 15s infinite;
+			  animation-timing-function: ease-in;
+    	 
+    	}
+    	.ct{background-color: #F4E2D6;
+    		
+    	}
+    	.ct:hover{
+			color: #A5A2CB;
+			transition: 2s;
+			font-size: 50px;
+			background-color: #ED25A9;
+			font-family: monospace;
+		}
+    	
+    	.card{
+    	width: 150px; height: 60px;}
+    	
+    	@keyframes mymove {
+  		from {left: 0px;}
+  		to {left: 500px;
+  		}
+		}
+    </style>
+
+</h:head> 
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><h2>Online Store <em>Website</em></h2></a>
+          <button class="navbar-toggler" type="button" p:data-toggle="collapse" p:data-target="#navbarResponsive" p:aria-controls="navbarResponsive" p:aria-expanded="false" p:aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item #{view.viewId eq'/customer_view.xhtml' ? 'active' : '' }">
+                    <h:link outcome="/customer_view" styleClass="nav-link">
+                    	Home
+                    	<span class="sr-only">(current)</span>
+               			</h:link>
+	                 </li> 
+
+                <li class="nav-item #{view.viewId eq'/product_view.xhtml' ? 'active' : '' }">
+                <h:link outcome="/product_view" styleClass="nav-link">
+                    Products
+               </h:link>
+                </li>
+				  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+                    
+                    <div class="dropdown-menu">
+                    
+                      <h:link outcome="/register" styleClass="dropdown-item">
+                    		Register
+              		 </h:link>
+                      <h:link outcome="/frontend/checkout" styleClass="dropdown-item">
+                    		Checkout
+               			</h:link>
+                       <h:link outcome="/frontend/order" styleClass="dropdown-item">
+                    		Orders
+               		</h:link>
+                     <h:link outcome="/contact" styleClass="dropdown-item">
+                   	 		About and Contact
+              	 	</h:link>
+              	 	<h:link onclick="$('#profile').modal('show');return false;"  styleClass="dropdown-item #{loginBean.loginUser.id !=0 ? '': 'd-none'}">
+              	 		Profile : #{loginBean.loginUser.userName}<i class="fa fa-user"></i>
+              	 	</h:link>
+                    </div>
+                </li>
+			   
+			    <li class="nav-item #{view.viewId eq'/cus_login.xhtml' ? 'active' : '' }">
+                <h:link outcome="/cus_login" styleClass="nav-link" rendered="#{loginBean.loginUser.id==0}">
+                    Login
+               </h:link>
+               <h:commandLink onclick="$('#logoutModal').modal('show');return false;" styleClass="nav-link text-center" rendered="#{loginBean.loginUser.id!=0}">
+               			<i class="fas fa-sign-out-alt" style="font-size:24px; color:  red;"></i>
+               </h:commandLink>
+                </li>
+                 <li class="nav-item #{view.viewId eq'/cart.xhtml' ? 'active' : '' }">
+                	 <h:link outcome="/cart"  id="count" styleClass="nav-link">
+                	  	<i class="fa fa-shopping-cart" style="font-size:24px; color:  blue;"></i>
+						<span style="color: red;">
+						<h:outputText value="#{cartBean.itemCount}" id="item_count"></h:outputText>
+						</span>
+					 </h:link>       
+			   </li>
+			  </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+      <div class="owl-banner owl-carousel">
+        <div class="banner-item-01" id="banner1">
+          <div class="text-content">
+            <h4>Find Happy Things Your Environment!</h4>
+            <h2>Welcome My Store !Come on!</h2>
+          </div>
+        </div>
+        <div class="banner-item-02" id="banner2">
+          <div class="text-content">
+            <h4>Love is Everything</h4>
+            <h2>Laboriosam reprehenderit ducimus</h2>
+          </div>
+        </div>
+        <div class="banner-item-03" id="banner3">
+          <div class="text-content">
+            <h4>Aishiteruyo</h4>
+            <h2>Quaerat suscipit unde minus dicta</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+  
+  
+<!-- end brands -->
+
+<!-- end category -->
+    <div class="best-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>About Us</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <p>Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit. Explicabo, esse consequatur alias repellat in excepturi inventore ad <a href="#">asperiores</a> tempora ipsa. Accusantium tenetur voluptate labore aperiam molestiae rerum excepturi minus in pariatur praesentium, corporis, aliquid dicta.</p>
+              <ul class="featured-list">
+                <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                <li><a href="#">Consectetur an adipisicing elit</a></li>
+                <li><a href="#">It aquecorporis nulla aspernatur</a></li>
+                <li><a href="#">Corporis, omnis doloremque</a></li>
+              </ul>
+              <a href="#" class="filled-button">Read More</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image"> 
+             <h:graphicImage  library="assets" name="images/photo1.jpg"  width="570px" height="350px"/>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="call-to-action">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <div class="row">
+                <div class="col-md-8">
+                  <h4>Lorem ipsum dolor sit amet, consectetur adipisicing.</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis amet elite author nulla.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 text-right">
+                <h:link outcome="/contact.xhtml" styleClass="filled-button">Contact Us</h:link>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p>Copyright © 2020 Shoe Store</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <h:outputScript library="vendor" name="jquery/jquery.min.js"></h:outputScript>
+	<h:outputScript library="vendor" name="bootstrap/js/bootstrap.bundle.min.js"></h:outputScript>
+     <!-- Additional Scripts -->
+     <h:outputScript library="assets" name="js/custom.js"></h:outputScript>
+    <h:outputScript library="assets" name="js/owl.js"></h:outputScript>
+ 	<!-- modal dialog -->
+ 	 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><h3>Are You Sure Leave!</h3></div>
+                <div class="modal-footer">
+                <h:form>
+	                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	                  <h:commandLink action="#{loginBean.cus_logout()}" value="LogOut" styleClass="btn btn-primary ml-2"/>
+	    				
+	    		</h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--  -->
+       <div class="modal fade" id="profile">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-body text-center">
+    				<div class="mb-4">
+    						<h:graphicImage  styleClass="rounded-circule shadow-sm" library="img" name="undraw_profile.svg" width="150" height="150" />
+    					</div>
+    					<hr />
+    					<h4 class="text-dark mb-2">#{loginBean.loginUser.userName}</h4>
+    					<p>(Role : #{loginBean.loginUser.role})</p>
+    					<p>Email: #{loginBean.loginUser.loginId}</p>
+    					<p>Phone : #{loginBean.loginUser.phone}</p><br />
+    					<p>Address : #{loginBean.loginUser.address}</p>
+    			</div>
+    			<div class="modal-footer">
+    			
+    				
+    			</div>
+    		</div>
+    	</div>
+    </div>
+         
+  </body> 
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://localhost:8080/03-shoe-shop-project/cart.xhtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="j_idt2"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <link rel="icon" href="http://localhost:8080/03-shoe-shop-project/assets/images/favicon.ico">
+   <link href="./Shoe Store Online Shop_files/css" rel="stylesheet">
+	 
+	<title>Shoe Store Online Shop</title>
+	
+    <!-- Bootstrap core CSS -->
+    <style>
+    	#bImg{
+    	background-image: url(resources/assets/images/other-image-fullscren-1-1920x900.jpg);
+   		 }
+  		 #banner1{
+   			padding: 300px 0px;
+			background-image: url(resources/assets/images/slider-image-2-1920x600.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+ 		  }
+ 		  #banner2{
+ 		  	padding: 300px 0px;
+			background-image: url(resources/assets/images/slider-image-1-1920x600.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+ 		  
+ 		  }
+ 		  #banner3{
+ 		  		padding: 300px 0px;
+				background-image: url(resources/assets/images/slider-image-3-1920x600.jpg); 
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+ 		  
+ 		  }
+    
+    </style><link type="text/css" rel="stylesheet" href="./Shoe Store Online Shop_files/bootstrap.min.css.xhtml"><link type="text/css" rel="stylesheet" href="./Shoe Store Online Shop_files/all.min-jsf.css.xhtml"><link type="text/css" rel="stylesheet" href="./Shoe Store Online Shop_files/style.css.xhtml"><link type="text/css" rel="stylesheet" href="./Shoe Store Online Shop_files/owl.css.xhtml"><script type="text/javascript" src="./Shoe Store Online Shop_files/jsf.js.xhtml"></script></head> 
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader" style="opacity: 0; visibility: hidden; display: none;">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="http://localhost:8080/03-shoe-shop-project/index.html"><h2>Online Store <em>Website</em></h2></a>
+          <button class="navbar-toggler" type="button" p:data-toggle="collapse" p:data-target="#navbarResponsive" p:aria-controls="navbarResponsive" p:aria-expanded="false" p:aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item "><a href="http://localhost:8080/03-shoe-shop-project/customer_view.xhtml" class="nav-link">
+                    	Home
+                    	<span class="sr-only">(current)</span></a>
+	                 </li> 
+
+             
+                <li class="nav-item "><a href="http://localhost:8080/03-shoe-shop-project/product_view.xhtml" class="nav-link">
+                    Products
+               </a>
+                </li>
+
+               
+                 <li class="nav-item "><a href="http://localhost:8080/03-shoe-shop-project/register.xhtml" class="nav-link">
+                    Register
+               </a>
+                </li>
+                 <li class="nav-item "><a href="http://localhost:8080/03-shoe-shop-project/cus_login.xhtml" class="nav-link">
+                    Login
+               </a>
+                </li>
+             
+                 <li class="nav-item "><a href="http://localhost:8080/03-shoe-shop-project/contact.xhtml" class="nav-link">
+                    Contact
+               </a>
+                </li>
+                 <li class="nav-item"><a id="count" name="count" href="http://localhost:8080/03-shoe-shop-project/cart.xhtml" class="nav-link">
+                	  			<i class="fa fa-shopping-cart" style="color:  red;"></i>
+									<span style="color: red;"><span id="item_count">1</span>
+									</span></a>       
+			   </li>
+			   <li class="nav-item "><a href="http://localhost:8080/03-shoe-shop-project/frontend/checkout.xhtml" class="nav-link">
+                    Checkout
+               </a>
+                </li>
+			  
+			   <li class="nav-item"><a href="http://localhost:8080/03-shoe-shop-project/cart.xhtml" class="nav-link d-none">
+			   	<i class="fa fa-user"></i></a>
+			   </li>
+			    <li class="nav-item "><a href="http://localhost:8080/03-shoe-shop-project/cus_login.xhtml" class="nav-link">
+                    Login
+               </a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+     
+    </div>
+    <!-- Banner Ends Here -->
+    <br><br>
+    <div class="row text-center ml-4 d-none">
+    	<div class="card col-5 shadow mb-4 mr-5 pl-3 pt-3 ml-3 center">
+    		<!-- &lt;div class="card-header text-center"&gt;CART&lt;/div&gt; -->
+    		<div class="card-body ml-3 mb-4 mr-5 pl-3 pt-3 text-center">
+    			<br><h5 class="mb-3 text-center">Cart Order is empty !</h5><br><a href="http://localhost:8080/03-shoe-shop-project/customer_view.xhtml">Go to Shopping</a>
+    		</div>
+    	</div>
+    </div>
+	<div class="card shadow mb-4 mr-5 pl-3 pt-3 ">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Cart Page</h6>
+                        </div>
+                        <div class="card-body">
+                           <div class="row">
+                           		<div class="col-lg-12">
+<form id="cart-info" name="cart-info" method="post" action="http://localhost:8080/03-shoe-shop-project/cart.xhtml" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="cart-info" value="cart-info">
+
+                           				<div class="card-body">
+				                            <div class="table-responsive"><table id="cart-info:dataTable" class="table table-bordered" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th class=",p-name,,,," scope="col">Image</th>
+<th class=",p-name,,,," scope="col">Product Name</th>
+<th class=",p-name,,,," scope="col">Price</th>
+<th class=",p-name,,,," scope="col">Total qty</th>
+<th class=",p-name,,,," scope="col">Total Amount</th>
+<th class=",p-name,,,," scope="col"><i class="fas fa-times text-danger"></i></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="./Shoe Store Online Shop_files/img1625572174935.jpg.xhtml" height="150px" width="150px"></td>
+<td>
+                                					Product 4
+                                					</td>
+<td>
+                                					10000 kyats
+                                					</td>
+<td><input id="cart-info:dataTable:0:j_idt53" name="cart-info:dataTable:0:j_idt53" value="1" onchange="mojarra.ab(this,event,&#39;valueChange&#39;,&#39;@this&#39;,0)" type="number"></td>
+<td>
+				                                		10000   kyats
+				                                	</td>
+<td><a href="http://localhost:8080/03-shoe-shop-project/cart.xhtml#" onclick="mojarra.jsfcljs(document.getElementById(&#39;cart-info&#39;),{&#39;cart-info:dataTable:0:j_idt59&#39;:&#39;cart-info:dataTable:0:j_idt59&#39;},&#39;&#39;);return false" class="fas fa-times text-danger"></a></td>
+</tr>
+</tbody>
+</table>
+<input type="submit" name="cart-info:j_idt60" value="Update" class="btn-update-cart d-none">
+                           			 </div>
+                       			 </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="-3569409181748679877:4803904822920302876" autocomplete="off">
+</form>
+                          </div>
+                         </div>
+                        </div>
+                    </div>
+                    
+                    <!--  -->
+                    <div class="card col-3 shadow mr-5 ml-3 text-center" style="float: left">
+							<div class="card-body">
+	                           <div class="row">
+<form id="j_idt63" name="j_idt63" method="post" action="http://localhost:8080/03-shoe-shop-project/cart.xhtml" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="j_idt63" value="j_idt63">
+<table>
+<thead>
+<tr>
+<th scope="col">Total Amount</th>
+<th scope="col"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+				                             10000 kyats
+				                            </td>
+<td><a href="http://localhost:8080/03-shoe-shop-project/frontend/checkout.xhtml" class="btn btn-outline-primary ml-3 mr-3">Check Out</a></td>
+</tr>
+</tbody>
+</table>
+<input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" value="-3569409181748679877:4803904822920302876" autocomplete="off">
+</form>
+	                        	 </div>
+                        </div>
+                    </div>
+					<!--  -->
+					   <div class="card col-3 shadow mr-5 ml-3 text-center" style="float: right">
+							<div class="card-body pl-3 pr-4" style="float: center">
+	                           <div class="row">
+<form id="j_idt71" name="j_idt71" method="post" action="http://localhost:8080/03-shoe-shop-project/cart.xhtml" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="j_idt71" value="j_idt71">
+<table>
+<tbody>
+<tr>
+<td><a href="http://localhost:8080/03-shoe-shop-project/frontend/checkout.xhtml" class="btn btn-outline-primary btn-lg btn-block ml-3 mr-3">Update cart</a></td>
+</tr>
+</tbody>
+</table>
+<input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:2" value="-3569409181748679877:4803904822920302876" autocomplete="off">
+</form>
+	                        	 </div>
+                        </div>
+                    </div><br>	<br>
+					
+					
+					<!--  -->
+  
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p>Copyright © 2020 Shoe Store</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript --><script type="text/javascript" src="./Shoe Store Online Shop_files/jquery.min.js.xhtml"></script><script type="text/javascript" src="./Shoe Store Online Shop_files/bootstrap.bundle.min.js.xhtml"></script>
+     <!-- Additional Scripts --><script type="text/javascript" src="./Shoe Store Online Shop_files/custom.js.xhtml"></script><script type="text/javascript" src="./Shoe Store Online Shop_files/owl.js.xhtml"></script>
+ 
+   
+</body></html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"> 
+
+<h:head>
+	<title>Login</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputScript library="js" name="jquery.min.js"></h:outputScript>
+	<h:outputScript library="js" name="bootsrap.min.js"></h:outputScript>
+</h:head> 
+<body> 
+	<div class="container">
+		<div class="row justify-content-center mt-4 pt-5 m-auto">
+			<div class="col-5">
+				<div class="card my-5">
+					<div class="card-body p-0">
+						<div class="row">
+							<div class="col">
+								<div class="p-3">
+									<div class="text-center">
+                                        <h3>Welcome Log In Page</h3>
+                                    </div>
+                                    <div class="alert alert-danger #{empty facesContext.messageList ? 'd-none' :''}">
+										<h:messages />
+									</div>
+									<h:form styleClass="form p-3">
+										<div class="form-group">
+											<label > Login ID</label>
+											<h:inputText value="#{loginBean.loginId}"  styleClass="form-control" p:placeholder="Enter Log In ID"/>
+										</div>
+										<div class="form-group">
+											<label>Password</label>
+											<h:inputSecret value="#{loginBean.password}"  styleClass="form-control" p:placeholder="Enter Password"/>
+										</div>
+										<div class="form-group">
+											<h:commandButton action="#{loginBean.login()}" styleClass="btn btn-primary  btn-block" value="login"/>
+										</div>
+									</h:form>	
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body> 
+</html>

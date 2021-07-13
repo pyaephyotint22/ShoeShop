@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   <link rel="icon" href="assets/images/favicon.ico"></link>
+   <link 
+   href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display;swap"
+    rel="stylesheet">
+	</link> 
+	<title>Shoe Store Online Shop</title>
+	
+    <!-- Bootstrap core CSS -->
+    <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+    <h:outputStylesheet library="webjars" name="font-awesome/5.15.0/css/all.min-jsf.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="owl.css"></h:outputStylesheet>
+    <style>
+    	#bImg{
+    	background-image: url(resources/assets/images/other-image-fullscren-1-1920x900.jpg);
+   		 }
+  		 #banner1{
+   			padding: 300px 0px;
+			background-image: url(resources/assets/images/slider-image-2-1920x600.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+ 		  }
+ 		  #banner2{
+ 		  	padding: 300px 0px;
+			background-image: url(resources/assets/images/slider-image-1-1920x600.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+ 		  
+ 		  }
+ 		  #banner3{
+ 		  		padding: 300px 0px;
+				background-image: url(resources/assets/images/slider-image-3-1920x600.jpg); 
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+ 		  
+ 		  }
+    
+    </style>
+
+</h:head> 
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><h2>Online Store <em>Website</em></h2></a>
+          <button class="navbar-toggler" type="button" p:data-toggle="collapse" p:data-target="#navbarResponsive" p:aria-controls="navbarResponsive" p:aria-expanded="false" p:aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+             <ul class="navbar-nav ml-auto">
+                <li class="nav-item #{view.viewId eq'/customer_view.xhtml' ? 'active' : '' }">
+                    <h:link outcome="/customer_view" styleClass="nav-link">
+                    	Home
+                    	<span class="sr-only">(current)</span>
+               			</h:link>
+	                 </li> 
+
+                <li class="nav-item #{view.viewId eq'/product_view.xhtml' ? 'active' : '' }">
+                <h:link outcome="/product_view" styleClass="nav-link">
+                    Products
+               </h:link>
+                </li>
+				  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+                    
+                    <div class="dropdown-menu">
+                    
+                      <h:link outcome="/register" styleClass="dropdown-item">
+                    		Register
+              		 </h:link>
+                      <h:link outcome="/frontend/checkout" styleClass="dropdown-item">
+                    		Checkout
+               			</h:link>
+                       <h:link outcome="/frontend/order" styleClass="dropdown-item">
+                    		Orders
+               		</h:link>
+                     <h:link outcome="/contact" styleClass="dropdown-item">
+                   	 		About and Contact
+              	 	</h:link>
+              	 	<h:link onclick="$('#profile').modal('show');return false;"  styleClass="dropdown-item #{loginBean.loginUser.id !=0 ? '': 'd-none'}">
+              	 		Profile : #{loginBean.loginUser.userName}<i class="fa fa-user"></i>
+              	 	</h:link>
+                    </div>
+                </li>
+			  
+			    <li class="nav-item #{view.viewId eq'/cus_login.xhtml' ? 'active' : '' }">
+                <h:link outcome="/cus_login" styleClass="nav-link" rendered="#{loginBean.loginUser.id==0}">
+                    Login
+               </h:link>
+               <h:commandLink onclick="$('#logoutModal').modal('show');return false;" styleClass="nav-link text-center" rendered="#{loginBean.loginUser.id!=0}">
+               			<i class="fas fa-sign-out-alt" style="font-size:24px; color:  red;"></i>
+               </h:commandLink>
+                </li>
+                 <li class="nav-item #{view.viewId eq'/cart.xhtml' ? 'active' : '' }">
+                	 <h:link outcome="/cart"  id="count" styleClass="nav-link">
+                	  	<i class="fa fa-shopping-cart" style="font-size:24px; color:  red;"></i>
+						<span style="color: red;">
+						<h:outputText value="#{cartBean.itemCount}" id="item_count"></h:outputText>
+						</span>
+					 </h:link>       
+			   </li>
+			  </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+     
+    </div>
+    <!-- Banner Ends Here -->
+    <br /><br />
+	<div class="card shadow mb-4 mr-5 pl-3 pt-3">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">#{registerBean.user.id ==0 ?'Register' :'Edit'}</h6>
+                        </div>
+                        <div class="card-body">
+                            <h:form styleClass="form" id="editForm">
+                            	<h:inputHidden value="#{userBean.user.id}"/>
+                            	<div class="row">
+                            		<div class="col-6">
+                            			<div class="form-group">
+                            				<label>User name</label>
+                            				<h:inputText id="name" validatorMessage="Require Name" value="#{registerBean.user.userName}" p:placeholder="Enter User Name" styleClass="form-control">
+                            					<f:validateRequired/>
+                            				</h:inputText>
+                            				<small>
+                            					<h:message for="name" styleClass="text-danger"/>
+                            				</small>
+                            			</div>
+                            			<h:panelGroup styleClass="form-group" rendered="#{registerBean.user.id==0}">
+                            				<label>Email</label>
+                            				<h:inputText id="id" validatorMessage="Require Login Id" value="#{registerBean.user.loginId}" p:placeholder="Enter Login ID" styleClass="form-control">
+                            					<f:validateRequired/>
+                            				</h:inputText>
+                            				<small>
+                            					<h:message for="id" styleClass="text-danger"/>
+                            				</small>
+                            			</h:panelGroup><br />
+                            			<h:panelGroup styleClass="form-group mt-3" rendered="#{registerBean.user.id==0}">
+                            				<h:outputLabel value="Password" />
+                            				<h:inputSecret  id="pass" validatorMessage="Require Password" value="#{registerBean.user.password}" p:placeholder="Enter Password" styleClass="form-control">
+                            					<f:validateRequired/>
+                            				</h:inputSecret>
+                            				<small>
+                            					<h:message for="pass" styleClass="text-danger"/>
+                            				</small>
+                            			</h:panelGroup>
+                            			
+                            		</div>
+                            		<div class="col-6">
+                            			<div class="form-group">
+                            				<label>Phone</label>
+                            				<h:inputText value="#{registerBean.user.phone}" p:placeholder="Enter Phone" styleClass="form-control">
+                            				</h:inputText>
+                            			</div>
+                            			<div class="form-group">
+                            				<label>Address</label>
+                            				<h:inputTextarea value="#{registerBean.user.address}" p:placeholder="Enter Address" styleClass="form-control" />
+                            			</div>
+                            		
+                            		</div>
+                            	</div><br />
+                            	<div class="row mt-3 pl-4">
+                            		<div class="form-group">
+                            				<h:commandLink  action="#{registerBean.reg_save()}" styleClass="btn btn-outline-primary row-3 ml-3 mr-3 pr-3 pl-3">
+                            					#{registerBean.user.id ==0 ?'Register' :'Edit'}
+                            				</h:commandLink>
+                            				
+                            			</div>
+                            			<div class="form-group #{loginBean.loginUser.id==0 ? '':'d-none'}">
+	                            			<h:link outcome="/cus_login" styleClass="btn btn-outline-secondary row-3 ml-3 mr-3 pr-3 pl-3">
+								                  OR Login
+								               </h:link>
+                            			</div>
+                            	</div>
+                            </h:form>
+                        </div>
+                    </div>
+<!--  -->
+  
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p>Copyright © 2020 Shoe Store</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <h:outputScript library="vendor" name="jquery/jquery.min.js"></h:outputScript>
+	<h:outputScript library="vendor" name="bootstrap/js/bootstrap.bundle.min.js"></h:outputScript>
+     <!-- Additional Scripts -->
+     <h:outputScript library="assets" name="js/custom.js"></h:outputScript>
+    <h:outputScript library="assets" name="js/owl.js"></h:outputScript>
+ 	<!-- modal dialog -->
+ 	 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><h3>Are You Sure Leave!</h3></div>
+                <div class="modal-footer">
+                <h:form>
+	                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	                  <h:commandLink action="#{loginBean.cus_logout()}" value="LogOut" styleClass="btn btn-primary ml-2"/>
+	    				
+	    		</h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--  -->
+       <div class="modal fade" id="profile">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-body text-center">
+    				<div class="mb-4">
+    						<h:graphicImage  styleClass="rounded-circule shadow-sm" library="img" name="undraw_profile.svg" width="150" height="150" />
+    					</div>
+    					<hr />
+    					<h4 class="text-dark mb-2">#{loginBean.loginUser.userName}</h4>
+    					<p>(Role : #{loginBean.loginUser.role})</p>
+    					<p>Email: #{loginBean.loginUser.loginId}</p>
+    					<p>Phone : #{loginBean.loginUser.phone}</p><br />
+    					<p>Address : #{loginBean.loginUser.address}</p>
+    			</div>
+    			<div class="modal-footer">
+    			
+    				
+    			</div>
+    		</div>
+    	</div>
+    </div>
+         
+  </body> 
+</html>

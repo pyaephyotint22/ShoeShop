@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					<h1 class="h3 mb-0 text-gray-800 pl-2">
+					<ui:insert name="main-header">Orders</ui:insert>
+					</h1>
+
+					<!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">#{loginBean.loginUser.userName}</span>
+                                <h:graphicImage styleClass="img-profile rounded-circle" library="img" name="undraw_profile.svg" />
+                                
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+	                                <h:commandLink styleClass="dropdown-item" onclick="$('#profile').modal('show');">
+	                                		<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+		                                   View Profile
+	                               </h:commandLink>
+	                                <h:link outcome="/admin/change-password" styleClass="dropdown-item">
+	                                	<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+	                                 Setting
+                                	</h:link>
+                                	
+                               		
+                               
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+     <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><h3>lOG OUT</h3></div>
+                <div class="modal-footer">
+                <h:form>
+	                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	                  <h:commandLink action="#{loginBean.logout()}" value="LogOut" styleClass="btn btn-primary ml-2"/>
+	    				
+	    		</h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- profile modal -->
+    <div class="modal fade" id="profile">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-body text-center">
+    				<div class="mb-4">
+    						<h:graphicImage  styleClass="rounded-circule shadow-sm" library="img" name="undraw_profile.svg" width="150" height="150" />
+    					</div>
+    					<hr />
+    					<h4 class="text-dark mb-2">#{loginBean.loginUser.userName}</h4>
+    					<p>(Role : #{loginBean.loginUser.role})</p>
+    					<p>Email: #{loginBean.loginUser.loginId}</p>
+    					<p>Phone : #{loginBean.loginUser.phone}</p><br />
+    					<p>Address : #{loginBean.loginUser.address}</p>
+    			</div>
+    			<div class="modal-footer">
+    			
+    				<h:link  outcome="/admin/user-add" styleClass="btn btn-danger">
+    				
+    					<f:param name="userId" value="#{userBean.user.id}"></f:param>OK
+    				</h:link>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+                 
+</html>

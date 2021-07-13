@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   <link rel="icon" href="assets/images/favicon.ico"></link>
+   <link 
+   href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display;swap"
+    rel="stylesheet">
+	</link> 
+	<title>Shoe Store Online Shop</title>
+	
+    <!-- Bootstrap core CSS -->
+    <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+    <h:outputStylesheet library="webjars" name="font-awesome/5.15.0/css/all.min-jsf.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="owl.css"></h:outputStylesheet>
+    <style>
+    	/* #bImg{
+    	background-image: url(resources/assets/images/photo2.jpg);
+   		 } */
+  		 
+    	
+    	}
+    	.ct{background-color: #F4E2D6;
+    		
+    	}
+    	.ct:hover{
+			color: #A5A2CB;
+			transition: 2s;
+			font-size: 30px;
+			background-color: #ED25A9;
+			font-family: monospace;
+		}
+    	
+    	.card{
+    	width: 150px; height: 60px;}
+    	
+    	@keyframes mymove {
+  		from {left: 0px;}
+  		to {left: 500px;
+  		}
+		}
+    </style>
+
+</h:head> 
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><h2>Online Store <em>Website</em></h2></a>
+          <button class="navbar-toggler" type="button" p:data-toggle="collapse" p:data-target="#navbarResponsive" p:aria-controls="navbarResponsive" p:aria-expanded="false" p:aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item #{view.viewId eq'/customer_view.xhtml' ? 'active' : '' }">
+                    <h:link outcome="/customer_view" styleClass="nav-link">
+                    	Home
+                    	<span class="sr-only">(current)</span>
+               			</h:link>
+	                 </li> 
+
+                <li class="nav-item #{view.viewId eq'/product_view.xhtml' ? 'active' : '' }">
+                <h:link outcome="/product_view" styleClass="nav-link">
+                    Products
+               </h:link>
+                </li>
+				  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+                    
+                    <div class="dropdown-menu">
+                    
+                      <h:link outcome="/register" styleClass="dropdown-item">
+                    		Register
+              		 </h:link>
+                      <h:link outcome="/frontend/checkout" styleClass="dropdown-item">
+                    		Checkout
+               			</h:link>
+                       <h:link outcome="/frontend/order" styleClass="dropdown-item">
+                    		Orders
+               		</h:link>
+                     <h:link outcome="/contact" styleClass="dropdown-item">
+                   	 		About and Contact
+              	 	</h:link>
+              	 	<h:link onclick="$('#profile').modal('show');return false;"  styleClass="dropdown-item #{loginBean.loginUser.id !=0 ? '': 'd-none'}">
+              	 		Profile : #{loginBean.loginUser.userName}<i class="fa fa-user"></i>
+              	 	</h:link>
+                    </div>
+                </li>
+			  
+			    <li class="nav-item #{view.viewId eq'/cus_login.xhtml' ? 'active' : '' }">
+                <h:link outcome="/cus_login" styleClass="nav-link" rendered="#{loginBean.loginUser.id==0}">
+                    Login
+               </h:link>
+               <h:commandLink onclick="$('#logoutModal').modal('show');return false;" styleClass="nav-link text-center" rendered="#{loginBean.loginUser.id!=0}">
+               			<i class="fas fa-sign-out-alt" style="font-size:24px; color:  red;"></i>
+               </h:commandLink>
+                </li>
+                 <li class="nav-item #{view.viewId eq'/cart.xhtml' ? 'active' : '' }">
+                	 <h:link outcome="/cart"  id="count" styleClass="nav-link">
+                	  	<i class="fa fa-shopping-cart" style="font-size:24px; color:  blue;"></i>
+						<span style="color: red;">
+						<h:outputText value="#{cartBean.itemCount}" id="item_count"></h:outputText>
+						</span>
+					 </h:link>       
+			   </li>
+			  </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Featured Products</h2>
+             <h:link outcome="/product_view">
+                    View more <i class="fa fa-angle-right"></i>
+               </h:link> 
+            </div>
+          </div>
+         <!-- ArrayList -->
+        
+         <ui:repeat var="p" value="#{productBean.products}" varStatus="status">
+          <div class="col-md-3">
+            <div class="product-item">
+              <h:link outcome="/product_details">
+              <f:param name="id" value="#{p.id}"></f:param>
+             	 <h:graphicImage value="/resources/uploads/#{p.photo}" width="350px" height="270px"  />
+          	 </h:link>
+              <div class="down-content">
+                <h4>#{p.name}</h4>
+                <h6>#{p.price} $</h6>
+                <p>#{p.productDetails}</p>
+                <h:form>
+                <h:commandLink action="#{cartBean.addToCart(p.id)}" styleClass="btn btn-outline-primary btn-block">
+                	Add to Cart   <i class="fas fa-shopping-cart ml-3 "></i>
+                	<f:ajax render="item_count item_price"/>
+                </h:commandLink>
+           </h:form>
+              </div>
+            </div>
+          </div>
+          </ui:repeat>
+         
+		<!-- 	End arraylist -->
+		
+        </div>
+      </div>
+    </div>
+  
+    <div class="services" id="bImg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Show Beauty Design Believe Me!</h2>
+
+              <a href="blog.html">read more <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <a href="#" class="services-item-image">
+              <h:graphicImage  library="shoeimg" name="OIP.jpg" width="370px" height="270px"/>
+             </a>
+
+              <div class="down-content">
+                <h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic</a></h4>
+
+                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <a href="#" class="services-item-image">
+               <h:graphicImage  library="shoeimg" name="shoe-planter-container-garden-vases-1.jpg" width="370px" height="270px" />
+            </a>
+
+              <div class="down-content">
+                <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit</a></h4>
+
+                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <a href="#" class="services-item-image"><h:graphicImage  library="shoeimg" name="OIF.jpg" width="370px" height="270px" /></a>
+
+              <div class="down-content">
+                <h4><a href="#">Aperiam modi voluptatum fuga officiis cumque</a></h4>
+
+                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+
+
+   
+    
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p>Copyright © 2020 Shoe Store</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <h:outputScript library="vendor" name="jquery/jquery.min.js"></h:outputScript>
+	<h:outputScript library="vendor" name="bootstrap/js/bootstrap.bundle.min.js"></h:outputScript>
+     <!-- Additional Scripts -->
+     <h:outputScript library="assets" name="js/custom.js"></h:outputScript>
+    <h:outputScript library="assets" name="js/owl.js"></h:outputScript>
+ 	<!-- modal dialog -->
+ 	 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"><h3>Are You Sure Leave!</h3></div>
+                <div class="modal-footer">
+                <h:form>
+	                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	                  <h:commandLink action="#{loginBean.cus_logout()}" value="LogOut" styleClass="btn btn-primary ml-2"/>
+	    				
+	    		</h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--  -->
+       <div class="modal fade" id="profile">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-body text-center">
+    				<div class="mb-4">
+    						<h:graphicImage  styleClass="rounded-circule shadow-sm" library="img" name="undraw_profile.svg" width="150" height="150" />
+    					</div>
+    					<hr />
+    					<h4 class="text-dark mb-2">#{loginBean.loginUser.userName}</h4>
+    					<p>(Role : #{loginBean.loginUser.role})</p>
+    					<p>Email: #{loginBean.loginUser.loginId}</p>
+    					<p>Phone : #{loginBean.loginUser.phone}</p><br />
+    					<p>Address : #{loginBean.loginUser.address}</p>
+    			</div>
+    			<div class="modal-footer">
+    			
+    				
+    			</div>
+    		</div>
+    	</div>
+    </div>
+         
+  </body> 
+</html>
